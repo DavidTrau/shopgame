@@ -10,7 +10,12 @@
             </select>
         </div>
     </div>
-    @include('admin.game.slot_machine.partials.image')
+</div>
+<div class="row my-2">
+    @include('admin.game.flip_card.partials.image')
+</div>
+<div class="row my-2">
+    @include('admin.game.flip_card.partials.bg_front')
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-8">

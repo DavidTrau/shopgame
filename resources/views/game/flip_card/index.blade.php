@@ -21,7 +21,9 @@
                                     <img src="{{ $slot['img'] }}" alt="{{ $slot['img'] }}">
                                 </div>
                                 <div class="flip-card-back">
-                                    <img src="{{ asset('assets/images/flip/card.png') }}" alt="{{ asset('assets/images/flip/card.png') }}">
+                                    <img src="{{ (isset($item['bg_front']) && $item['bg_front'] != '') ? $item['bg_front'] : asset('assets/images/flip/card.png') }}"
+                                         alt="{{ (isset($item['bg_front']) && $item['bg_front'] != '') ? $item['bg_front'] : asset('assets/images/flip/card.png') }}"
+                                    >
                                 </div>
                             </div>
                         </div>
