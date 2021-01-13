@@ -17,7 +17,8 @@ class FlipCard extends Model
         'price',
         'rules',
         'description',
-        'status'
+        'status',
+        'bg_front'
     ];
 
     public function histories()

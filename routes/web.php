@@ -17,6 +17,7 @@ Route::get('facebook/callback', 'Auth\SocialController@handleProviderCallback');
 
 // Test
 //Route::get('test', 'Test\TestController@testCharge');
+//Route::get('create-pass', 'Test\TestController@createPass');
 
 Route::get('danh-muc/{key}/{up?}/{down?}/{id?}', 'Category\CategoryController@getAccountByCategory');
 Route::post('get-accounts', 'Account\AccountController@getListAccount');

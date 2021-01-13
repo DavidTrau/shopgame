@@ -1,29 +1,29 @@
 <div class="col-sm-12 col-md-4">
     <div class="form-group">
-        <label for="">Ảnh bìa</label>
-        <input type="hidden" id="image" name="image" value="{{ isset($item->image) ? $item->image : 'https://via.placeholder.com/500x400' }}">
+        <label for="">Ảnh mặc định</label>
+        <input type="hidden" id="bg_front" name="bg_front" value="{{ isset($item->bg_front) ? $item->bg_front : 'https://via.placeholder.com/500x400' }}">
     </div>
 </div>
 <div class="col-sm-12 col-md-4">
-    <img src="{{ isset($item->image) ? $item->image : 'https://via.placeholder.com/500x400' }}"
-         id="view-image"
+    <img src="{{ isset($item->bg_front) && $item->bg_front != '' ? $item->bg_front : asset('assets/images/flip/card.png') }}"
+         id="view-bg_front"
          alt="Ảnh bìa"
+         class="img-responsive"
          style="max-width: 100%; max-height: 300px"
     />
-
 </div>
 <div class="col-sm-12 col-md-4">
-    <div id="upload_image" action="" class="dropzone">
+    <div id="upload_bg_front" action="" class="dropzone">
         <div class="fallback">
             <input name="file" type="file"/>
         </div>
         <div class="dz-message">
-            Click để tải file hoặc kéo thả ảnh bìa vào đây !!
+            Click để tải file hoặc kéo thả ảnh mặc định vào đây !!
         </div>
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#upload_image").dropzone({
+            $("#upload_bg_front").dropzone({
                 url: '{!! asset('admin/upload/image') !!}',
                 method: 'post',
                 parallelUploads: 1,
@@ -38,8 +38,8 @@
             });
         });
         function updateImage(url) {
-            $('#view-image').attr('src', url);
-            $('#image').val(url);
+            $('#view-bg_front').attr('src', url);
+            $('#bg_front').val(url);
         }
     </script>
 </div>

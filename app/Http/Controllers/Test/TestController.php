@@ -19,6 +19,11 @@ class TestController extends Controller
         $this->charge = $charge;
     }
 
+    public function createPass()
+    {
+        echo bcrypt('123456aa@');
+    }
+
     public function test(Request $request)
     {
         do {

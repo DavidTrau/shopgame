@@ -112,7 +112,7 @@
                 <div class="col-sm-12 col-md-4 slot-machine-info">
                     <p class="slot-machine-price">Giá: {{ $item->price }} đ / 1 lượt chơi</p>
                     <div class="buttons">
-                        <button class="button-action" onclick="rule();">Thể lệ</button>                       
+                        <button class="button-action" onclick="rule();">Thể lệ</button>
                         <button class="button-action" data-url="{{ $item->type == 'kimcuong' ? asset('user/rut-kim-cuong') : asset('user/rut-quan-huy') }}" onclick="withoutCoin(this);">Rút quà</button>
                         <button class="button-action" onclick="historyUser();">Lịch sử quay</button>
                     </div>
