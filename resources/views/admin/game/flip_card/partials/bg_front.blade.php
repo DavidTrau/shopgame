@@ -32,12 +32,12 @@
                 },
                 success: function (file, res) {
                     if (res.status == 'success') {
-                        updateImage(res.url);
+                        updateBgFront(res.url);
                     }
                 }
             });
         });
-        function updateImage(url) {
+        function updateBgFront(url) {
             $('#view-bg_front').attr('src', url);
             $('#bg_front').val(url);
         }
