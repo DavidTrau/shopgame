@@ -27,8 +27,7 @@ class UserResourceController extends Controller
      */
     public function index()
     {
-        $users = $this->user->paginate(15);
-        return view('admin.user.index', compact('users'));
+        return view('admin.user.index');
     }
 
     public function list(Request $request)

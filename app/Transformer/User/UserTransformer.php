@@ -16,6 +16,8 @@ class UserTransformer {
                 'username' => $item->username,
                 'email' => $item->email,
                 'total_money' => $item->total_money,
+                'kimcuong' => isset($item->wallet) ? $item->wallet->kimcuong : 0,
+                'quanhuy' => isset($item->wallet) ? $item->wallet->quanhuy : 0,
             ];
             array_push($result, $temp);
         }

@@ -28,7 +28,8 @@
                                                 <th scope="col">Thao tác</th>
                                                 <th scope="col">Tên</th>
                                                 <th scope="col">Tên đăng nhập</th>
-                                                <th scope="col">Email</th>
+                                                <th scope="col">Kim cương</th>
+                                                <th scope="col">Quân huy</th>
                                                 <th scope="col">Tổng tiền</th>
                                             </tr>
                                             </thead>
@@ -77,7 +78,8 @@
                                                         {data: 'id'},
                                                         {data: 'name'},
                                                         {data: 'username'},
-                                                        {data: 'email'},
+                                                        {data: 'kimcuong'},
+                                                        {data: 'quanhuy'},
                                                         {
                                                             data: 'total_money', render: function (total_money) {
                                                                 return numeral(total_money).format('0,0') + ' đ';
