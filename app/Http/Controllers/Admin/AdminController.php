@@ -94,9 +94,11 @@ class AdminController extends Controller
             foreach ($charge_month as $charge) {
                 $total_month += $charge->amount;
             }
-
-            $userDay = $this->user->whereDay('created_at', '=', date('Y-m-d'))->count();
-            $users_last = $this->user->orderBy('id', 'desc')->offset(0)->limit(5)->get();
+            $userDay = $this->user->whereDate('created_at', date('Y-m-d'))->count();
+            $users_last = $this->user
+                ->whereDate('created_at', date('Y-m-d'))
+                ->orderBy('id', 'desc')
+                ->offset(0)->limit(5)->get();
 
             return view('admin.dashboard', compact(
                 'total_account',
