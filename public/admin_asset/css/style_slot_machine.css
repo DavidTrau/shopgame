@@ -73,8 +73,8 @@
 .slot-machine .slot_2 {}
 .slot-machine .slot_3 {}
 .slot-machine div {
-    /*width: 100px;*/
-    /*height: 100px;*/
+    width: 100px;
+    height: 100px;
 }
 .slot-machine div img {
     width: 150px;
