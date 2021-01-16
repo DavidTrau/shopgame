@@ -12,76 +12,172 @@
             @include('admin.layouts.components.topbar')
 
             <!-- Begin Page Content -->
-                <div class="container-fluid">
+            <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Thông tin</h1>
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- Số tài khoản đã bán -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tài khoản đã bán</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_account }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Số tài khoản random đã bán -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tài khoản random đã bán</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_random }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if(Auth::guard('admin')->user()->is_super == 1)
-                            @include('admin.components.admin')
-                        @else
-                            @include('admin.components.ctv')
-                        @endif
-
-                    </div>
-
-                    @if(Auth::guard('admin')->user()->is_super == 1)
-                    <div class="row">
-                        <!-- Duyệt thẻ chậm -->
-                        <div class="col-xl-8 col-lg-7">
-                            @include('admin.components.check_card')
-                        </div>
-                        <!-- Thành viên mới -->
-                        <div class="col-xl-4 col-lg-5">
-                            @include('admin.components.new_users')
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Duyệt thẻ chậm -->
-                        <div class="col-xl-12 col-lg-12">
-                            @include('admin.components.request_processing')
-                        </div>
-                    </div>
-                    @endif
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Thông tin</h1>
                 </div>
+
+                <div class="row">
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng ACC tháng',
+                        'value' => $data_show['total_acc_month']
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng ACC hôm nay',
+                        'value' => $data_show['total_acc_day']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập tháng này',
+                        'value' => $data_show['total_month'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập hôm nay',
+                        'value' => $data_show['total_day'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                </div>
+                <div class="row">
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng ACC Random tháng',
+                        'value' => $data_show['total_random_month']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng ACC Random hôm nay',
+                        'value' => $data_show['total_random_day']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng ACC Random Coin tháng',
+                        'value' => $data_show['total_random_coin_month']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng ACC Random Coin hôm nay',
+                        'value' => $data_show['total_random_coin_day']
+                    ])
+                </div>
+
+                <div class="row">
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Vòng quay tháng',
+                        'value' => $data_show['total_spin_month']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Vòng quay hôm nay',
+                        'value' => $data_show['total_spin_day']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Vòng quay tiền ảo tháng',
+                        'value' => $data_show['total_spin_coin_month']
+                    ])
+
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Vòng quay tiền ảo hôm nay',
+                        'value' => $data_show['total_spin_coin_day']
+                    ])
+                </div>
+
+                <div class="row">
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Máy xèng tháng',
+                        'value' => $data_show['total_slot_machine_month']
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Máy xèng hôm nay',
+                        'value' => $data_show['total_slot_machine_day']
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Lật hình tháng',
+                        'value' => $data_show['total_flip_card_month']
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Tổng Lật hình hôm nay',
+                        'value' => $data_show['total_flip_card_day']
+                    ])
+                </div>
+                <div class="row">
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Vòng quay tháng',
+                        'value' => $data_show['income_spin_month'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Vòng quay hôm nay',
+                        'value' => $data_show['income_spin_day'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Vòng quay tiền ảo tháng',
+                        'value' => $data_show['income_spin_coin_month'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Vòng quay tiền ảo hôm nay',
+                        'value' => $data_show['income_spin_coin_day'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                </div>
+
+                <div class="row">
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Máy xèng tháng',
+                        'value' => $data_show['income_slot_machine_month'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Máy xèng hôm nay',
+                        'value' => $data_show['income_slot_machine_day'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Lật hình tháng',
+                        'value' => $data_show['income_flip_card_month'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                    @include('admin.partials.info', [
+                        'title' => 'Thu nhập Lật hình hôm nay',
+                        'value' => $data_show['income_flip_card_day'],
+                        'type' => 'success',
+                        'icon' => 'fa-dollar-sign'
+                    ])
+                </div>
+
+                @if(Auth::guard('admin')->user()->is_super == 1)
+                <div class="row">
+                    <!-- Duyệt thẻ chậm -->
+                    <div class="col-xl-8 col-lg-7">
+                        @include('admin.components.check_card')
+                    </div>
+                    <!-- Thành viên mới -->
+                    <div class="col-xl-4 col-lg-5">
+                        @include('admin.components.new_users')
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Duyệt thẻ chậm -->
+                    <div class="col-xl-12 col-lg-12">
+                        @include('admin.components.request_processing')
+                    </div>
+                </div>
+                @endif
+            </div>
             <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
