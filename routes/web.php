@@ -152,6 +152,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin']], function ()
         Route::get('reset-income/{id}', 'Admin\AdminController@resetIncome');
         // End manager admin
 
+        // History by date selected
+        Route::post('history-by-date', 'Admin\AdminController@historyByDate');
+
         // setting
         Route::group(['prefix' => 'setting'], function () {
             // general

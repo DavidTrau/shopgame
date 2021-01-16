@@ -21,4 +21,9 @@ class HistorySlotMachine extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function slotMachine()
+    {
+        return $this->belongsTo(SlotMachine::class, 'slot_machine_id', 'id');
+    }
 }

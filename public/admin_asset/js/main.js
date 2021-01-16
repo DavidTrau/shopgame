@@ -26,7 +26,7 @@ function hideLoading() {
     $('#loading').hide();
 }
 
-function callAjax(url, method = 'GET', formData = []) {
+function callAjax(url, method = 'GET', formData = {}) {
     return new Promise(resolve => {
         $.ajax({
             url: url,

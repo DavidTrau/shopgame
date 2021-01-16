@@ -54,6 +54,10 @@
     <!-- Dropzone -->
     <link rel="stylesheet" href="/admin_asset/vendor/dropzone/dropzone.min.css" />
     <script type="text/javascript" src="/admin_asset/vendor/dropzone/dropzone.min.js"></script>
+    <!-- Bootstrap Datepicker -->
+    <link rel="stylesheet" type="text/css" href="/admin_asset/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+    <script type="text/javascript" src="/admin_asset/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/admin_asset/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js"></script>
     @yield('js')
 </head>
 

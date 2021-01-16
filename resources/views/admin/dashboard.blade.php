@@ -167,6 +167,7 @@
                     </div>
                     <!-- Thành viên mới -->
                     <div class="col-xl-4 col-lg-5">
+                        @include('admin.partials.find_history')
                         @include('admin.components.new_users')
                     </div>
                 </div>

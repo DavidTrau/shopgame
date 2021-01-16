@@ -69,7 +69,6 @@ class AdminController extends Controller
         if ($admin->is_super == 1) {
 
             $data_show = $this->createDataShow();
-//            dd($data_show);
 
             // get total account sell
             $total_account = $this->historyAccount->count();
@@ -228,7 +227,7 @@ class AdminController extends Controller
             ->get();
         $income_spin_month = 0;
         foreach ($spin_month as $spin) {
-            $income_spin_month += $spin->price;
+            $income_spin_month += isset($spin->spin) ? $spin->spin->price : 0;
         }
         $spin_day = $this->historySpin
             ->whereYear('created_at', date('Y'))
@@ -237,7 +236,7 @@ class AdminController extends Controller
             ->get();
         $income_spin_day = 0;
         foreach ($spin_day as $spin) {
-            $income_spin_day += $spin->price;
+            $income_spin_day += isset($spin->spin) ? $spin->spin->price : 0;
         }
 
         // calculator spin coin
@@ -247,7 +246,7 @@ class AdminController extends Controller
             ->get();
         $income_spin_coin_month = 0;
         foreach ($spin_coin_month as $spin) {
-            $income_spin_coin_month += $spin->price;
+            $income_spin_coin_month += isset($spin->spinCoin) ? $spin->spinCoin->price : 0;
         }
         $spin_coin_day = $this->historySpinCoin
             ->whereYear('created_at', date('Y'))
@@ -256,7 +255,7 @@ class AdminController extends Controller
             ->get();
         $income_spin_coin_day = 0;
         foreach ($spin_coin_day as $spin) {
-            $income_spin_coin_day += $spin->price;
+            $income_spin_coin_day += isset($spin->spinCoin) ? $spin->spinCoin->price : 0;
         }
 
         // calculator slot machine
@@ -266,16 +265,16 @@ class AdminController extends Controller
             ->get();
         $income_slot_machine_month = 0;
         foreach ($slot_machine_month as $slotMachine) {
-            $income_slot_machine_month += $slotMachine->price;
+            $income_slot_machine_month += isset($slotMachine->slotMachine) ? $slotMachine->slotMachine->price : 0;
         }
-        $slot_machine_day = $this->historySpinCoin
+        $slot_machine_day = $this->historySlotMachine
             ->whereYear('created_at', date('Y'))
             ->whereMonth('created_at', date('m'))
             ->whereDay('created_at', date('d'))
             ->get();
         $income_slot_machine_day = 0;
-        foreach ($slot_machine_day as $spin) {
-            $income_slot_machine_day += $spin->price;
+        foreach ($slot_machine_day as $slotMachine) {
+            $income_slot_machine_day += isset($slotMachine->slotMachine) ? $slotMachine->slotMachine->price : 0;
         }
 
         // calculator slip card
@@ -285,16 +284,16 @@ class AdminController extends Controller
             ->get();
         $income_flip_card_month = 0;
         foreach ($flip_card_month as $flip_card) {
-            $income_flip_card_month += $flip_card->price;
+            $income_flip_card_month += isset($flip_card->flipCard) ? $flip_card->flipCard->price : 0;
         }
-        $flip_card_day = $this->historySpinCoin
+        $flip_card_day = $this->historyFlipCard
             ->whereYear('created_at', date('Y'))
             ->whereMonth('created_at', date('m'))
             ->whereDay('created_at', date('d'))
             ->get();
         $income_flip_card_day = 0;
         foreach ($flip_card_day as $flip_card) {
-            $income_flip_card_day += $flip_card->price;
+            $income_flip_card_day += isset($flip_card->flipCard) ? $flip_card->flipCard->price : 0;
         }
 
         return [
@@ -334,6 +333,71 @@ class AdminController extends Controller
             'income_flip_card_month' => $income_flip_card_month,
             'income_flip_card_day' => $income_flip_card_day
         ];
+    }
+
+    public function historyByDate(Request $request)
+    {
+        $date = $request->input('date');
+        $dateArr = explode('-', $date);
+
+        $charges = $this->charge
+            ->where('status', 2)
+            ->whereDate('created_at',$date)
+            ->get();
+        $total_charge = 0;
+        foreach ($charges as $charge) {
+            $total_charge += $charge->amount;
+        }
+
+        $count_acc = $this->historyAccount
+            ->whereDate('created_at',$date)
+            ->count();
+
+        $count_acc_random = $this->historyRandom
+            ->whereDate('created_at',$date)
+            ->count();
+
+        $history_spin = $this->historySpin
+            ->whereDate('created_at',$date)
+            ->get();
+        $income_spin = 0;
+        foreach ($history_spin as $history) {
+            $income_spin += isset($history->spin) ? $history->spin->price : 0;
+        }
+
+        $history_spin_coin = $this->historySpinCoin
+            ->whereDate('created_at',$date)
+            ->get();
+        $income_spin_coin = 0;
+        foreach ($history_spin_coin as $history) {
+            $income_spin_coin += isset($history->spinCoin) ? $history->spinCoin->price : 0;
+        }
+
+        $history_slot_machine = $this->historySlotMachine
+            ->whereDate('created_at',$date)
+            ->get();
+        $income_slot_machine = 0;
+        foreach ($history_slot_machine as $history) {
+            $income_slot_machine += isset($history->slotMachine) ? $history->slotMachine->price : 0;
+        }
+
+        $history_flip_card = $this->historyFlipCard
+            ->whereDate('created_at',$date)
+            ->get();
+        $income_flip_card = 0;
+        foreach ($history_flip_card as $history) {
+            $income_flip_card += isset($history->flipCard) ? $history->flipCard->price : 0;
+        }
+
+        return response()->json([
+            'total_charge' => $total_charge,
+            'count_acc' => $count_acc,
+            'count_acc_random' => $count_acc_random,
+            'income_spin' => $income_spin,
+            'income_spin_coin' => $income_spin_coin,
+            'income_slot_machine' => $income_slot_machine,
+            'income_flip_card' => $income_flip_card
+        ]);
     }
 
     public function list(Request $request)

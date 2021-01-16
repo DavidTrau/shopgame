@@ -21,4 +21,9 @@ class FlipCardHistory extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function flipCard()
+    {
+        return $this->belongsTo(FlipCard::class, 'flip_card_id', 'id');
+    }
 }
