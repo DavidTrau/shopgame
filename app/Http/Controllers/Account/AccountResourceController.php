@@ -7,7 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountRequest;
 use App\Transformer\Account\AccountTransformer;
-use App\Transformer\FreeFire;
+use App\Transformer\Game\FreeFire;
 use App\Transformer\Game\ArenaValor;
 use App\Transformer\Select2\Select2;
 use Illuminate\Http\Request;
