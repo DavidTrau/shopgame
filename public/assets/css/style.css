@@ -350,7 +350,7 @@
     color: black;
 }
 .flip-card-back {
-    // background-color: dodgerblue;
+// background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
 }
@@ -395,11 +395,28 @@
     margin-bottom: 20px;
 }
 
+/*Style for Luck money*/
+.lucky_money {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: 13%;
+    z-index: 1000;
+    cursor: pointer;
+}
+.lucky_money img {
+    cursor: pointer;
+    width: 100%;
+}
+
 @media only screen and (max-width: 46.1875em) {
     ._1card.flip-card {
         margin-right: 0px;
         width: 170px;
         height: 256px;
+    }
+    .lucky_money {
+        width: 30%;
     }
 }
 .example1{
@@ -407,28 +424,28 @@
     padding: 2px 6px;
     display: inline-block;
     border-radius: 5px;
-    margin-left: 1px;	
-	text-decoration: line-through;       
-    padding: 5px 15px;   
+    margin-left: 1px;
+    text-decoration: line-through;
+    padding: 5px 15px;
     font-size: 14px;
-    font-weight: bold;		
-	
-         }
+    font-weight: bold;
+
+}
 .example2{
     border: 2px solid red;
     padding: 2px 6px;
     display: inline-block;
     border-radius: 5px;
-    margin-left: 1px;		       
-    padding: 5px 15px;   
+    margin-left: 1px;
+    padding: 5px 15px;
     font-size: 14px;
-    font-weight: bold;	
+    font-weight: bold;
 }
 img {
     vertical-align: middle;
-	max-width: 100%;
+    max-width: 100%;
 }
- .sl-btnod1 {
+.sl-btnod1 {
     display: inline-block;
     width: 166px;
     height: 36px;

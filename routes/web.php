@@ -5,6 +5,7 @@ Route::get('login', 'User\UserController@login');
 Route::post('login', 'User\UserController@doLogin');
 Route::get('register', 'User\UserController@register');
 Route::post('register', 'User\UserController@doRegister');
+Route::get('check-login', 'User\UserController@checkLogin');
 
 // Check email
 Route::get('check-email', 'User\UserController@checkEmail');
@@ -94,6 +95,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('mo-hom', 'Account\AccountController@historyBox');
         Route::get('quay-xeng', 'Account\AccountController@historySlotMachine');
         Route::get('lat-the-bai', 'Account\AccountController@historyFlipCard');
+        Route::get('get-gift', 'Account\AccountController@getGift');
+        Route::get('check-got-lucky-money', 'Account\AccountController@checkGotLuckyMoney');
     });
     // charge
     Route::get('charge/list', 'Charge\ChargeController@chargeList');
@@ -204,6 +207,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin']], function ()
             // config naptudong.com
             Route::get('config-ntd', 'Setting\SettingController@getConfigNaptudong');
             Route::post('config-ntd', 'Setting\SettingController@postConfigNaptudong');
+            // config lucky money
+            Route::get('config-lucky-money', 'Setting\SettingController@getConfigLuckyMoney');
+            Route::post('config-lucky-money', 'Setting\SettingController@postConfigLuckyMoney');
         });
         // user
         Route::group(['prefix' => 'user'], function () {

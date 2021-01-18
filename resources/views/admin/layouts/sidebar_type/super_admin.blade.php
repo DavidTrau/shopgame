@@ -45,6 +45,7 @@
             <a class="collapse-item" href="{{ asset('admin/setting/config-alert') }}">Cấu hình Thông báo</a>
             <a class="collapse-item" href="{{ asset('admin/setting/config-tichhop') }}">Key Tích hợp(SMS)</a>
             <a class="collapse-item" href="{{ asset('admin/setting/config-messenger') }}">Messenger</a>
+            <a class="collapse-item" href="{{ asset('admin/setting/config-lucky-money') }}">Lì xì</a>
         </div>
     </div>
 </li>

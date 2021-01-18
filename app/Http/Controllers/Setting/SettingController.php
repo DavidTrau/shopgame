@@ -788,4 +788,57 @@ class SettingController extends Controller
         }
     }
 
+    public function getConfigLuckyMoney()
+    {
+        try {
+            $config = $this->setting->where('key', config('setting.LUCKY_MONEY'))->first();
+            if (!$config) {
+                $config = [];
+            } else {
+                $config = json_decode($config['value'], true);
+            }
+            return view('admin.setting.config_lucky_money', compact('config'));
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'status' => 'error'
+            ], 500);
+        }
+    }
+
+    public function postConfigLuckyMoney(Request $request)
+    {
+        try {
+            $attr = $request->only(['value', 'description']);
+            if (!array_key_exists('value', $attr) || !array_key_exists('description', $attr)) {
+                return abort(404);
+            }
+
+            // check exist config
+            $configValue = $this->setting->where('key', config('setting.LUCKY_MONEY'))->first();
+            if ($configValue) {
+                // update config
+                $configValue->update([
+                    'value' => json_encode($attr)
+                ]);
+            } else {
+                // create config
+                $this->setting->create([
+                    'key' => config('setting.LUCKY_MONEY'),
+                    'value' => json_encode($attr)
+                ]);
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Cập nhật cấu hình Lì xì thành công'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Cập nhật cấu hình Lì xì thất bại'
+            ], 500);
+        }
+    }
+
 }

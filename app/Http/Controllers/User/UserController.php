@@ -154,4 +154,18 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function checkLogin()
+    {
+        if (Auth::check()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Logged'
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Not Logged'
+        ]);
+    }
 }

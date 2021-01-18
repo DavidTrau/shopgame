@@ -39,18 +39,18 @@
 										<div class="example1">
 												  <a>{{ $spin->price*2 }}</a>
 												 </div>
-										<div class="example2">{{ $spin->price }}												
+										<div class="example2">{{ $spin->price }}
                                                </div>
                                             <p>Lượt Quay: {{ $spin->total_turns }}</p>
                                         </div>
-																					   
+
                                         <div class="a-more">
                                             <div class="row">
-                                                <div class="col-xs-12">												
+                                                <div class="col-xs-12">
                                                     <div class="view">
                                                         <a href="{{ asset('vong-quay/'.$spin->id) }}" title="{{ isset($spin->title) ? $spin->title : 'Vòng quay' }}"><strong>Chơi Ngay</strong></a>
                                                     </div>
-																									
+
                                                 </div>
                                             </div>
                                         </div>
@@ -72,15 +72,15 @@
                                                 </a>
                                             </h2>
                                         </div>
-                                        <div class="news_description">		
+                                        <div class="news_description">
 										<div class="example1">
 												  <a>{{ $spin->price*2 }}đ</a>
 												 </div>
-										<div class="example2">{{ $spin->price }}đ												
+										<div class="example2">{{ $spin->price }}đ
                                                </div>
-                                            <p>Lượt Quay: {{ $spin->count_turn }}</p>											
+                                            <p>Lượt Quay: {{ $spin->count_turn }}</p>
                                         </div>
-										
+
                                         <div class="a-more">
                                             <div class="row">
                                                 <div class="col-xs-12">
@@ -113,11 +113,11 @@
 											<div class="example1">
 												  <a>{{ $slotMachine->price*2 }}đ</a>
 												 </div>
-										<div class="example2">{{ $slotMachine->price }}đ											
+										<div class="example2">{{ $slotMachine->price }}đ
                                                </div>
                                                 <p>Số lượt chơi: {{ count($slotMachine->histories) }}</p>
                                             </div>
-											
+
                                             <div class="a-more">
                                                 <div class="row">
                                                     <div class="col-xs-12">
@@ -150,10 +150,10 @@
 											<div class="example1">
 												  <a>{{ $flipCard->price*2 }}đ</a>
 												 </div>
-										<div class="example2">{{ $flipCard->price }}đ												
+										<div class="example2">{{ $flipCard->price }}đ
                                                </div>
                                                 <p>Số lượt chơi: {{ count($flipCard->histories) }}</p>
-                                            </div>											
+                                            </div>
                                             <div class="a-more">
                                                 <div class="row">
                                                     <div class="col-xs-12">
@@ -166,7 +166,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            @endif                       
+                            @endif
 
                             @if(isset($categories) && count($categories) > 0)
                                 @foreach($categories as $category)
@@ -186,10 +186,10 @@
                                             <div class="news_description">
 												<div class="example1">
 												  <a>Giảm Giá 69%</a>
-												 </div>											
+												 </div>
                                                 <p>Đã bán: {{ $category['count_sold'] }}</p>
 												</div>
-												
+
 											<div class="a-more">
                                                 <div class="row">
                                                     <div class="col-xs-12">
@@ -199,10 +199,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-												
-                                            </div>	
-											 </div>	                                                
-                                                                           
+
+                                            </div>
+											 </div>
+
                                 @endforeach
                             @endif
 
@@ -220,11 +220,11 @@
                                                     <a href="{{ asset('gift/'.$gift->id) }}" title="{{ $gift->title }}">{{ $gift->title }}</a>
                                                 </h2>
                                             </div>
-                                            <div class="news_description">											
-										<div class="example2">{{ $gift->price }}đ												
+                                            <div class="news_description">
+										<div class="example2">{{ $gift->price }}đ
                                                </div>
-                                                <p>Đã bán: {{ $gift->sold }}</p>                                            
-											
+                                                <p>Đã bán: {{ $gift->sold }}</p>
+
 												   </div>
                                             <div class="a-more">
                                                 <div class="row">
@@ -254,13 +254,13 @@
                                                     <a href="{{ asset('random/'.$random->id) }}" title="Random Liên Quân Sơ Cấp">{{ $random->title }}</a>
                                                 </h2>
                                             </div>
-                                            <div class="news_description">        
-												<div class="example2">												 
+                                            <div class="news_description">
+												<div class="example2">
 												  {{ $random->price }}đ
-                                                   </div>											
+                                                   </div>
                                                 <p>Đã bán: {{ $random->count_selled }}</p>
-												
-                                            </div>											
+
+                                            </div>
                                             <div class="a-more">
                                                 <div class="row">
                                                     <div class="col-xs-12">
@@ -280,9 +280,9 @@
                 </div>
             </div>
             <!-- END: PAGE CONTAINER -->
-           
         </div>
     </div>
+    @include('home.partial.lucky_money')
 @endsection
 
 @section('css')
@@ -311,5 +311,5 @@
             z-index: 5;
         }
     </style>
-	
+
 @endsection

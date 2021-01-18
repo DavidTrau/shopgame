@@ -6,7 +6,10 @@ use App\Account;
 use App\Admin;
 use App\HistoryAccount;
 use App\Http\Controllers\Controller;
+use App\LuckyGift;
 use App\Services\UserService;
+use App\Services\WalletService;
+use App\Setting;
 use App\Transformer\Spin\AccountTransformer;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,13 +21,21 @@ class AccountController extends Controller
     private $user;
     private $historyAccount;
     private $admin;
+    private $setting;
+    private $luckyGift;
 
-    public function __construct(Account $account, User $user, HistoryAccount $historyAccount, Admin $admin)
+    public function __construct(Account $account,
+                                User $user,
+                                HistoryAccount $historyAccount,
+                                Admin $admin,
+                                Setting $setting, LuckyGift $luckyGift)
     {
         $this->account = $account;
         $this->user = $user;
         $this->historyAccount = $historyAccount;
         $this->admin = $admin;
+        $this->setting = $setting;
+        $this->luckyGift = $luckyGift;
     }
 
     public function getListAccount(Request $request)
@@ -140,5 +151,46 @@ class AccountController extends Controller
         $account = $this->account->find($id);
         $data = json_decode($account->data);
         return view('account.popup.info', compact('account', 'data'));
+    }
+
+    public function getGift()
+    {
+        // check có cấu hình
+        $config = $this->setting->where('key', config('setting.LUCKY_MONEY'))->first();
+        if (!$config) {
+            return "Có lỗi.";
+        }
+        // check user has lucky money
+        $check = $this->luckyGift->where('user_id', Auth::id())->count();
+        if ($check) {
+            return "Tài khoản đã nhận quà";
+        }
+        $config = json_decode($config->value);
+        $value = $config->value;
+        $description = $config->description;
+
+        // add user to history
+        $this->luckyGift->create([
+            'user_id' => Auth::id(),
+            'value' => $value
+        ]);
+        // add to wallet
+        WalletService::updateKimCuong(Auth::id(), $value);
+        return view('account.popup.get_gift', compact('description'));
+    }
+
+    public function checkGotLuckyMoney()
+    {
+        $check = $this->luckyGift->where('user_id', Auth::id())->count();
+        if ($check) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Member got lucky money.'
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => 'Member not got lucky money.'
+        ]);
     }
 }

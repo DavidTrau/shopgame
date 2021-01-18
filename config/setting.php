@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'NAPTHENHANH' => 'napthenhanh',    
+    'NAPTHENHANH' => 'napthenhanh',
     'CARDVIP' => 'cardvip',
     'NAPTUDONG' => 'naptudong',
     'LOGIN_FACEBOOK' => 'login_fb',
@@ -11,4 +11,5 @@ return [
     'ALERT' => 'alert',
     'TICHHOP' => 'tichhop',
     'MESSENGER' => 'messenger',
+    'LUCKY_MONEY' => 'lucky_money',
 ];

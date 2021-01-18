@@ -17,19 +17,33 @@ class WalletService
     public static function updateKimCuong($user_id, $value)
     {
         $wallet = Wallet::where('user_id', $user_id)->first();
-        $wallet->update([
-            'kimcuong' => $value,
-        ]);
-        return true;
+        if ($wallet) {
+            $wallet->update([
+                'kimcuong' => $wallet->kimcuong + $value,
+            ]);
+        } else {
+            Wallet::create([
+                'user_id' => $user_id,
+                'kimcuong' => $value,
+                'quanhuy' => 0,
+            ]);
+        }
     }
 
     // update quanhuy
     public static function updateQuanHuy($user_id, $value)
     {
         $wallet = Wallet::where('user_id', $user_id)->first();
-        $wallet->update([
-            'quanhuy' => $value,
-        ]);
-        return true;
+        if ($wallet) {
+            $wallet->update([
+                'quanhuy' => $wallet->quanhuy + $value,
+            ]);
+        } else {
+            Wallet::create([
+                'user_id' => $user_id,
+                'kimcuong' => 0,
+                'quanhuy' => $value,
+            ]);
+        }
     }
 }
