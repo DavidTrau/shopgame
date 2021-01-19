@@ -12,10 +12,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal" rel="{{ asset('user/rut-kim-cuong') }}">Rút kim cương</a>
+    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal" href="{{ asset('user/rut-kim-cuong') }}">Rút kim cương</a>
     <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal" onclick="location.reload();">Đóng</button>
 </div>
-
-<script type="text/javascript">
-
-</script>
