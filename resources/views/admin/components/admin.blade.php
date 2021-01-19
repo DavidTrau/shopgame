@@ -1,32 +1,136 @@
-<!-- Thu nhập hôm nay -->
-<div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-success shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Thu nhập hôm nay</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($total_day) }} vnđ</div>
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="row">
+    @include('admin.partials.info', [
+        'title' => 'Tổng ACC tháng',
+        'value' => $data_show['total_acc_month'] ?? 0
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Tổng ACC hôm nay',
+        'value' => $data_show['total_acc_day'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập tháng này',
+        'value' => $data_show['total_month'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập hôm nay',
+        'value' => $data_show['total_day'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
 </div>
-<!-- Thu nhập tháng này -->
-<div class="col-xl-3 col-md-6 mb-4">
-    <div class="card border-left-info shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Thu nhập tháng này</div>
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ number_format($total_month) }} vnđ</div>
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="row">
+    @include('admin.partials.info', [
+        'title' => 'Tổng ACC Random tháng',
+        'value' => $data_show['total_random_month'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Tổng ACC Random hôm nay',
+        'value' => $data_show['total_random_day'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Tổng ACC Random Coin tháng',
+        'value' => $data_show['total_random_coin_month'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Tổng ACC Random Coin hôm nay',
+        'value' => $data_show['total_random_coin_day'] ?? 0
+    ])
+</div>
+<div class="row">
+    @include('admin.partials.info', [
+        'title' => 'Tổng Vòng quay tháng',
+        'value' => $data_show['total_spin_month'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Tổng Vòng quay hôm nay',
+        'value' => $data_show['total_spin_day'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Tổng Vòng quay tiền ảo tháng',
+        'value' => $data_show['total_spin_coin_month'] ?? 0
+    ])
+
+    @include('admin.partials.info', [
+        'title' => 'Tổng Vòng quay tiền ảo hôm nay',
+        'value' => $data_show['total_spin_coin_day'] ?? 0
+    ])
+</div>
+<div class="row">
+    @include('admin.partials.info', [
+        'title' => 'Tổng Máy xèng tháng',
+        'value' => $data_show['total_slot_machine_month'] ?? 0
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Tổng Máy xèng hôm nay',
+        'value' => $data_show['total_slot_machine_day'] ?? 0
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Tổng Lật hình tháng',
+        'value' => $data_show['total_flip_card_month'] ?? 0
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Tổng Lật hình hôm nay',
+        'value' => $data_show['total_flip_card_day'] ?? 0
+    ])
+</div>
+<div class="row">
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Vòng quay tháng',
+        'value' => $data_show['income_spin_month'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Vòng quay hôm nay',
+        'value' => $data_show['income_spin_day'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Vòng quay tiền ảo tháng',
+        'value' => $data_show['income_spin_coin_month'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Vòng quay tiền ảo hôm nay',
+        'value' => $data_show['income_spin_coin_day'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+</div>
+<div class="row">
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Máy xèng tháng',
+        'value' => $data_show['income_slot_machine_month'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Máy xèng hôm nay',
+        'value' => $data_show['income_slot_machine_day'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Lật hình tháng',
+        'value' => $data_show['income_flip_card_month'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
+    @include('admin.partials.info', [
+        'title' => 'Thu nhập Lật hình hôm nay',
+        'value' => $data_show['income_flip_card_day'] ?? 0,
+        'type' => 'success',
+        'icon' => 'fa-dollar-sign'
+    ])
 </div>
