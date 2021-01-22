@@ -12,7 +12,7 @@ class ImageController extends Controller
     public function uploadImage(Request $request)
     {
         $image = $request->file('file');
-        $url = ImgbbService::uploadImage($image);
+        $url = ImgurService::uploadImage($image);
         return response()->json([
             'status' => 'success',
             'url' => $url
