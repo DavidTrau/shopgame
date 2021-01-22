@@ -25,6 +25,6 @@ class UploadFile {
             $name = Str::random(10). '_' . $nameReal;
         }
         $file->move('upload/'.$location, $name);
-        return 'upload/'.$location.'/'.$name;
+        return '/upload/'.$location.'/'.$name;
     }
 }
